@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/Anna-Gladush/NodeJS-Basic-Informational-Site#readme",
   "dependencies": {
+    "express": "^5.2.1",
     "vite": "^8.0.10"
   }
 }
