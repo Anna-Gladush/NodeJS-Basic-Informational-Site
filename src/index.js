@@ -10,16 +10,16 @@ const server = http.createServer((req, res) => {
   let filePath;
   // HOME
   if (req.url === '/') {
-    filePath = path.join(__dirname, 'src', 'index.html');
+    filePath = path.join(__dirname, 'pages', 'index.html');
     res.statusCode = 200;
   } else if (req.url === '/about') {
-    filePath = path.join(__dirname, 'src','about.html');
+    filePath = path.join(__dirname, 'pages','about.html');
     res.statusCode = 200;
   } else if (req.url === '/contact-me') {
-    filePath = path.join(__dirname, 'src', 'contact-me.html')
+    filePath = path.join(__dirname, 'pages', 'contact-me.html')
     res.statusCode = 200;
   } else {
-    filePath = path.join(__dirname, 'src', '404.html');
+    filePath = path.join(__dirname, 'pages', '404.html');
     res.statusCode = 404;
   }
 
