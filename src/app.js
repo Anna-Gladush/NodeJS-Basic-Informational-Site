@@ -1,16 +1,41 @@
 const express = require('express');
+const path = require("node:path")
+
 const app = express();
 
 const authorRouter = require('./routes/authorRouter');
 const bookRouter = require('./routes/bookRouter');
-const indexRouter = require('./routes/indexRouter');
+// const indexRouter = require('./routes/indexRouter');
 
 app.use('/authors', authorRouter)
 app.use('/books', bookRouter)
-app.use('/', indexRouter)
+// app.use('/', indexRouter)
 
 const PORT = 8080;
 const hostname = 'localhost';
+
+// ASSETS
+const assetsPath = path.join(__dirname, "public");
+app.use(express.static(assetsPath));
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs")
+
+const links = [
+  { href: "/", text: "Home" },
+  { href: "/about", text: "About" },
+];
+
+const users = ["Rose", "Cake", "Biff"];
+
+app.get("/", (req, res) => {
+  res.render("index", { links: links, users: users });
+});
+
+app.get("/about", (req, res) => {
+  res.render("about", {links: links})
+})
+
 app.listen(PORT, hostname, (error) => {
   if (error) {
     throw error;
