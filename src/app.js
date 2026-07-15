@@ -5,14 +5,10 @@ const app = express();
 
 const authorRouter = require('./routes/authorRouter');
 const bookRouter = require('./routes/bookRouter');
+const usersRouter = require("./routes/usersRouter");
 // const indexRouter = require('./routes/indexRouter');
 
-app.use('/authors', authorRouter)
-app.use('/books', bookRouter)
-// app.use('/', indexRouter)
-
-const PORT = 8080;
-const hostname = 'localhost';
+const PORT = process.env.PORT || 3000;
 
 // ASSETS
 const assetsPath = path.join(__dirname, "public");
@@ -20,23 +16,31 @@ app.use(express.static(assetsPath));
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs")
+app.use(express.urlencoded({ extended: true }));
 
-const links = [
-  { href: "/", text: "Home" },
-  { href: "/about", text: "About" },
-];
+app.use('/authors', authorRouter)
+app.use('/books', bookRouter)
+app.use("/", usersRouter);
+// app.use('/', indexRouter)
 
-const users = ["Rose", "Cake", "Biff"];
 
-app.get("/", (req, res) => {
-  res.render("index", { links: links, users: users });
-});
+// const links = [
+//   // { href: "/", text: "Home" },
+//   { href: "/about", text: "About" },
+//   { href: "/new", text: "Form" },
+// ];
+
+// const users = ["Rose", "Cake", "Biff"];
+
+// app.get("/", (req, res) => {
+//   res.render("index", { links: links, users: users });
+// });
 
 app.get("/about", (req, res) => {
   res.render("about", {links: links})
 })
 
-app.listen(PORT, hostname, (error) => {
+app.listen(PORT, (error) => {
   if (error) {
     throw error;
   }

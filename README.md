@@ -7,3 +7,7 @@
 
 index.js -> using just node.js
 app.js -> using express.js
+
+# FORMS AND DATA HANDLING
+
+![alt text](image.png)
