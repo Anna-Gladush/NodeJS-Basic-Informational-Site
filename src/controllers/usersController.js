@@ -18,7 +18,7 @@ const validateUser = [
 ];
 
 exports.usersListGet = (req, res) => {
-  res.render("index", {
+  res.render("userIndex", {
     title: "User list",
     users: usersStorage.getUsers(),
   });
@@ -42,7 +42,7 @@ exports.usersCreatePost = [
     }
     const { firstName, lastName, email, age, bio } = matchedData(req);
     usersStorage.addUser({ firstName, lastName, email, age, bio });
-    res.redirect("/");
+    res.redirect("/users");
   }
 ];
 
@@ -68,13 +68,13 @@ exports.usersUpdatePost = [
     }
     const { firstName, lastName, email, age, bio } = matchedData(req);
     usersStorage.updateUser(req.params.id, { firstName, lastName, email, age, bio });
-    res.redirect("/");
+    res.redirect("/users");
   }
 ];
 
 exports.usersDeletePost = (req, res) => {
   usersStorage.deleteUser(req.params.id);
-  res.redirect("/");
+  res.redirect("/users");
 };
 
 exports.searchUser = (req, res) => {

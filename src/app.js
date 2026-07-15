@@ -20,21 +20,23 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/authors', authorRouter)
 app.use('/books', bookRouter)
-app.use("/", usersRouter);
+app.use("/users", usersRouter);
 // app.use('/', indexRouter)
 
 
-// const links = [
-//   // { href: "/", text: "Home" },
-//   { href: "/about", text: "About" },
-//   { href: "/new", text: "Form" },
-// ];
+const links = [
+  { href: "/", text: "Home" },
+  { href: "/about", text: "About" },
+  { href: "/users", text: "Users", },
+  { href: "/authors", text: "Authors", },
+  { href: "/books", text: "Books", },
+];
 
-// const users = ["Rose", "Cake", "Biff"];
+const users = ["Rose", "Cake", "Biff"];
 
-// app.get("/", (req, res) => {
-//   res.render("index", { links: links, users: users });
-// });
+app.get("/", (req, res) => {
+  res.render("index", { links: links, users: users });
+});
 
 app.get("/about", (req, res) => {
   res.render("about", {links: links})

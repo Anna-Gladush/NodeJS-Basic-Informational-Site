@@ -5,11 +5,11 @@
   </head>
 <body>
   <h1><%= title %></h1>
-  <form action="/search" method="GET">
+  <!-- <form action="/search" method="GET">
     <input type="text" name="search" id="search">
-  </form>
+  </form> -->
   <%- include("partials/errors.ejs") %>
-  <form action="/create" method="POST">
+  <form action="/users/create" method="POST">
     <label for="firstName">First Name: </label>
     <input type="text" name="firstName" id="firstName" required>
     <label for="lastName">Last Name: </label>
@@ -23,6 +23,6 @@
     <textarea name="bio" id="bio" maxlength="200"></textarea>
     <button type="submit">Submit</button>
   </form>
-  <a href="/">Back to home</a>
+  <a href="/users">Back to user base:</a>
 </body>
 </html>
