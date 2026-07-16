@@ -6,6 +6,7 @@ const app = express();
 const authorRouter = require('./routes/authorRouter');
 const bookRouter = require('./routes/bookRouter');
 const usersRouter = require("./routes/usersRouter");
+const dbRouter = require("./routes/dbRouter");
 // const indexRouter = require('./routes/indexRouter');
 
 const PORT = process.env.PORT || 3000;
@@ -15,12 +16,14 @@ const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
 
 app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs")
+app.set("view engine", "ejs");
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/authors', authorRouter)
 app.use('/books', bookRouter)
 app.use("/users", usersRouter);
+app.use("/db", dbRouter);
 // app.use('/', indexRouter)
 
 
@@ -30,6 +33,8 @@ const links = [
   { href: "/users", text: "Users", },
   { href: "/authors", text: "Authors", },
   { href: "/books", text: "Books", },
+  { href: "/db", text: "PostgreSQL", },
+  { href: "/db/new", text: "PostgreSQL create new user", },
 ];
 
 const users = ["Rose", "Cake", "Biff"];
